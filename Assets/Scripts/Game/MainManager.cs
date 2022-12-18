@@ -7,15 +7,14 @@ public class MainManager : MonoBehaviour {
     public int lineCount = 6;
     public Rigidbody ball;
 
-    public Text scoreText;
-    public GameObject gameOverText;
+    public GameUIHandler gameUIHandler;
     
     private bool m_Started = false;
     private int m_Points;
     
     private bool m_GameOver = false;
+    public BestScoresManager bestScoresManager;
 
-    
     // Start is called before the first frame update
     void Start() {
         const float step = 0.6f;
@@ -53,11 +52,21 @@ public class MainManager : MonoBehaviour {
 
     void AddPoint(int point) {
         m_Points += point;
-        scoreText.text = $"Score : {m_Points}";
+        gameUIHandler.UpdateScoreText(m_Points);
     }
 
     public void GameOver() {
         m_GameOver = true;
-        gameOverText.SetActive(true);
+        gameUIHandler.GameOverTextVisibility(true);
+
+        if (bestScoresManager.CheckScore(m_Points)) {
+            Player player = new Player("Holi", m_Points);
+
+            bestScoresManager.AddToList(player);
+
+            if (bestScoresManager.IsTheNewBestScore(m_Points)) {
+                gameUIHandler.UpdateBestScoreText(m_Points);
+            }
+        }
     }
 }
