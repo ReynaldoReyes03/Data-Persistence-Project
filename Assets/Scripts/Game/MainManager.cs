@@ -53,6 +53,10 @@ public class MainManager : MonoBehaviour {
     void AddPoint(int point) {
         m_Points += point;
         gameUIHandler.UpdateScoreText(m_Points);
+
+        if (bestScoresManager.IsTheNewBestScore(m_Points)) {
+            gameUIHandler.UpdateBestScoreText(m_Points);
+        }
     }
 
     public void GameOver() {
@@ -60,7 +64,7 @@ public class MainManager : MonoBehaviour {
         gameUIHandler.GameOverTextVisibility(true);
 
         if (bestScoresManager.CheckScore(m_Points)) {
-            Player player = new Player("Holi", m_Points);
+            Player player = new Player(GameManager.Instance.playerName, m_Points);
 
             bestScoresManager.AddToList(player);
 

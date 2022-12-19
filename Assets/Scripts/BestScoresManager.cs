@@ -8,7 +8,7 @@ public class BestScoresManager : MonoBehaviour {
         List<Player> bestScoresList = GameManager.Instance.GetBestScores();
         bool isNewBestScore = false;
 
-        if (GameManager.Instance== null || score > bestScoresList[0].score) {
+        if (bestScoresList == null || score > bestScoresList[0].score) {
             isNewBestScore = true;
         }
 
@@ -19,7 +19,7 @@ public class BestScoresManager : MonoBehaviour {
         List<Player> bestScoresList = GameManager.Instance.GetBestScores();
         bool canBeAddedToList = false;
 
-        if (bestScoresList.Count < 10 || score > bestScoresList[bestScoresList.Count - 1].score) {
+        if (bestScoresList == null || bestScoresList.Count < 10 || score > bestScoresList[bestScoresList.Count - 1].score) {
             canBeAddedToList = true;
         }
 
@@ -28,6 +28,8 @@ public class BestScoresManager : MonoBehaviour {
 
     public void AddToList(Player player) {
         List<Player> bestScoresList = GameManager.Instance.GetBestScores();
+
+        if (bestScoresList == null) bestScoresList = new List<Player>();
 
         bestScoresList.Add(player);
 
