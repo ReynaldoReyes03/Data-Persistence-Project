@@ -10,7 +10,6 @@ public class GameUIHandler : MonoBehaviour {
     public BestScoresManager bestScoresManager;
 
     private void Start() {
-        print(GameManager.Instance.playerName);
         Player bestScore = bestScoresManager.GetBestScore();
 
         if (bestScore != null) {
@@ -18,10 +17,12 @@ public class GameUIHandler : MonoBehaviour {
         } else {
             bestScoreText.text = $"Best Score: 0";
         }
+
+        UpdateScoreText(0);
     }
 
     public void UpdateScoreText(int score) {
-        currentScoreText.text = $"SCORE: {score}";
+        currentScoreText.text = $"SCORE: {GameManager.Instance.playerName} : {score}";
     }
 
     public void UpdateBestScoreText(int score) {
