@@ -38,4 +38,25 @@ public class GameManager : MonoBehaviour {
 
         File.WriteAllText(saveFilePath, json);
     }
+
+    public SettingsData GetSettigns() {
+        SettingsData settings = null;
+        string saveFilePath = Path.Combine(Application.persistentDataPath + "/Settings.json");
+
+        if (File.Exists(saveFilePath)) {
+            string json = File.ReadAllText(saveFilePath);
+            settings = JsonUtility.FromJson<SettingsData>(json);
+        }
+
+        return settings;
+    }
+
+    public void SaveSettings(SettingsMenuUIHandler settings) {
+        SettingsData data = new SettingsData(settings);
+
+        string saveFilePath = Path.Combine(Application.persistentDataPath + "/Settings.json");
+        string json = JsonUtility.ToJson(data);
+
+        File.WriteAllText(saveFilePath, json);
+    }
 }
