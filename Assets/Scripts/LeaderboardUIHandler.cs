@@ -3,10 +3,12 @@ using TMPro;
 using UnityEngine;
 
 public class LeaderboardUIHandler : MonoBehaviour {
-    [SerializeField] private GameObject panelPrefab;
+    [SerializeField] private GameObject leaderboardElementPrefab;
     [SerializeField] private Transform panelsContainer;
+    [SerializeField] private TextMeshProUGUI text;
 
     public void ClearLeaderboard() {
+        text.gameObject.SetActive(false);
         foreach (Transform transform in panelsContainer.transform) Destroy(transform.gameObject);
     }
 
@@ -15,9 +17,16 @@ public class LeaderboardUIHandler : MonoBehaviour {
 
         if (bestScoresList != null) {
             for (int i = 0; i < bestScoresList.Count; i++) {
-                GameObject panel = Instantiate(panelPrefab, panelsContainer);
-                panel.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"{i + 1} {bestScoresList[i]}";
+                Player player = bestScoresList[i];
+                GameObject leaderboardElement = Instantiate(leaderboardElementPrefab, panelsContainer);
+
+                LeaderboardElement element = leaderboardElement.GetComponent<LeaderboardElement>();
+                element.numberText.text = (i + 1).ToString();
+                element.playerNameText.text = player.name;
+                element.scoreText.text = player.score.ToString();
             }
+        } else {
+            text.gameObject.SetActive(true);
         }
     }
 }

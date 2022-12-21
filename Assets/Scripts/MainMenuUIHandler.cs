@@ -8,8 +8,8 @@ using UnityEditor;
 #endif
 
 public class MainMenuUIHandler : MonoBehaviour {
-#if UNITY_WEBPLAYER
-    public static string webplayerQuitURL = "http://google.com";
+#if UNITY_WEBGL
+    public static string webplayerQuitURL = "https://github.com/ReynaldoReyes03";
 #endif
 
     [SerializeField] private TMP_InputField nameInputField;
@@ -20,11 +20,14 @@ public class MainMenuUIHandler : MonoBehaviour {
 
         if (string.IsNullOrWhiteSpace(playerName) || string.IsNullOrEmpty(playerName)) {
             playButton.gameObject.SetActive(false);
+            GameManager.Instance.correctName = false;
         } else {
             if (Regex.IsMatch(playerName, @"^[a-zA-Z0-9]+$")) {
                 playButton.gameObject.SetActive(true);
+                GameManager.Instance.correctName = true;
             } else {
                 playButton.gameObject.SetActive(false);
+                GameManager.Instance.correctName = false;
             }
         }
     }
@@ -40,7 +43,7 @@ public class MainMenuUIHandler : MonoBehaviour {
     public void ExitGame() {
         #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
-        #elif UNITY_WEBPLAYER
+        #elif UNITY_WEBGL
             Application.OpenURL(webplayerQuitURL);
         #else
             Application.Quit();
