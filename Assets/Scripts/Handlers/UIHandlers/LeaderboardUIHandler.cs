@@ -1,14 +1,17 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LeaderboardUIHandler : MonoBehaviour {
     [SerializeField] private GameObject leaderboardElementPrefab;
     [SerializeField] private Transform panelsContainer;
     [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private Button resetButton;
 
     public void ClearLeaderboard() {
         text.gameObject.SetActive(false);
+        resetButton.gameObject.SetActive(true);
         foreach (Transform transform in panelsContainer.transform) Destroy(transform.gameObject);
     }
 
@@ -27,6 +30,11 @@ public class LeaderboardUIHandler : MonoBehaviour {
             }
         } else {
             text.gameObject.SetActive(true);
+            resetButton.gameObject.SetActive(false);
         }
+    }
+
+    public void ResetBestScoresList() {
+        GameManager.Instance.ResetBestScoresList();
     }
 }

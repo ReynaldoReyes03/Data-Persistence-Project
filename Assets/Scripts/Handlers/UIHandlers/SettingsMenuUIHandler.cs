@@ -25,16 +25,13 @@ public class SettingsMenuUIHandler : MonoBehaviour {
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider fXSlider;
 
-    [Header("Panel")]
-    [SerializeField] private GameObject brightnessPanel;
-
     [Header("Containers")]
     [SerializeField] private GameObject resolutionContainer;
     [SerializeField] private GameObject fullscreenContainer;
 
-    private SettingsData settingsData;
-
+    private GameObject brightnessPanel;
     private Image brightnessFilter;
+    private SettingsData settingsData;
 
     [HideInInspector] public int resolution;
     [HideInInspector] public int quality;
@@ -200,5 +197,9 @@ public class SettingsMenuUIHandler : MonoBehaviour {
         fxVolume = fXSlider.value;
 
         GameManager.Instance.SaveSettings(this);
+    }
+
+    public void ResetSettings() {
+        GameManager.Instance.ResetSettings();
     }
 }

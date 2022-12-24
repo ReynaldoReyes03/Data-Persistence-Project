@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
     public static GameManager Instance;
-    public bool correctName;
 
+    [HideInInspector] public bool correctName;
     [HideInInspector] public string playerName;
+
+    #if UNITY_WEBGL || UNITY_EDITOR
+        public string webplayerQuitURL = "https://github.com/ReynaldoReyes03";
+    #endif
 
     private void Awake() {
         if (Instance != null) {
@@ -40,6 +44,14 @@ public class GameManager : MonoBehaviour {
         File.WriteAllText(saveFilePath, json);
     }
 
+    public void ResetBestScoresList() {
+        string saveFilePath = Path.Combine(Application.persistentDataPath + "/BestScores.json");
+        
+        if (File.Exists(saveFilePath)) {
+            File.Delete(saveFilePath);
+        }
+    }
+
     public SettingsData GetSettigns() {
         SettingsData settings = null;
         string saveFilePath = Path.Combine(Application.persistentDataPath + "/Settings.json");
@@ -59,5 +71,13 @@ public class GameManager : MonoBehaviour {
         string json = JsonUtility.ToJson(data);
 
         File.WriteAllText(saveFilePath, json);
+    }
+
+    public void ResetSettings() {
+        string saveFilePath = Path.Combine(Application.persistentDataPath + "/Settings.json");
+        
+        if (File.Exists(saveFilePath)) {
+            File.Delete(saveFilePath);
+        }
     }
 }

@@ -16,7 +16,7 @@ AudioMixerController:
   m_EnableSuspend: 1
   m_UpdateMode: 0
   m_ExposedParameters:
-  - guid: 954f047fa6b5cf046ab2eeeda6859b12
+  - guid: d121d7ca274f83548bf2488dab94ac4c
     name: FX Volume
   m_AudioMixerGroupViews:
   - guids:
@@ -66,5 +66,7 @@ AudioMixerSnapshotController:
   m_Name: Snapshot
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: bc81bd5c1e9f48343a193549647094a6
-  m_FloatValues: {}
+  m_FloatValues:
+    d121d7ca274f83548bf2488dab94ac4c: -26
+    954f047fa6b5cf046ab2eeeda6859b12: 1
   m_TransitionOverrides: {}

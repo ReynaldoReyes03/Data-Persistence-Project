@@ -2,9 +2,8 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class Brick : MonoBehaviour {
-    public UnityEvent<int> onDestroyed;
-    
-    public int PointValue;
+    [HideInInspector] public UnityEvent<int> onDestroyed;
+    [HideInInspector] public int PointValue;
 
     void Start() {
         var renderer = GetComponentInChildren<Renderer>();
