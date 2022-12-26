@@ -7,6 +7,7 @@ public class HotkeysHandler : MonoBehaviour {
     [SerializeField] private GameObject startGamePanel;
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject leaderboardPanel;
+    [SerializeField] private GameObject aboutPanel;
 
     [Header("Title Panel Buttons")]
     [SerializeField] private Button startButton;
@@ -22,6 +23,9 @@ public class HotkeysHandler : MonoBehaviour {
 
     [Header("Leaderboard Panel Buttons")]
     [SerializeField] private Button closeLeaderboardButton;
+
+    [Header("About Panel Buttons")]
+    [SerializeField] private Button closeAboutButton;
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Return)) {
@@ -41,6 +45,8 @@ public class HotkeysHandler : MonoBehaviour {
                 discardSettingsButton.onClick.Invoke();
             } else if (leaderboardPanel.activeSelf) {
                 closeLeaderboardButton.onClick.Invoke();
+            } else if (aboutPanel.activeSelf) {
+                closeAboutButton.onClick.Invoke();
             }
         }
     }

@@ -4,9 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class LeaderboardUIHandler : MonoBehaviour {
+    [Header("Prefabs")]
     [SerializeField] private GameObject leaderboardElementPrefab;
+
+    [Header("Containers")]
     [SerializeField] private Transform panelsContainer;
+
+    [Header("Texts")]
     [SerializeField] private TextMeshProUGUI text;
+
+    [Header("Buttons")]
     [SerializeField] private Button resetButton;
 
     public void ClearLeaderboard() {

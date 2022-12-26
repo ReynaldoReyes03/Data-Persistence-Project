@@ -8,9 +8,8 @@ public class GameManager : MonoBehaviour {
     [HideInInspector] public bool correctName;
     [HideInInspector] public string playerName;
 
-    #if UNITY_WEBGL || UNITY_EDITOR
-        public string webplayerQuitURL = "https://github.com/ReynaldoReyes03";
-    #endif
+    public string gitHubURL = "https://github.com/ReynaldoReyes03";
+    public string projectRepositoryURL = "https://github.com/ReynaldoReyes03/Data-Persistence-Project";
 
     private void Awake() {
         if (Instance != null) {
